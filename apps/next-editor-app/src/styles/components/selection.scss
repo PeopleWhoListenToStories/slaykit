@@ -1,0 +1,137 @@
+/* stylelint-disable */
+.ProseMirror {
+  p.selected-node {
+    outline: 1px solid var(--node-selected-border-color);
+  }
+
+  hr.selected-node {
+    &::after {
+      background-color: var(--node-selected-border-color);
+    }
+  }
+
+  .tableWrapper {
+    &.selected-node {
+      td,
+      th {
+        border-color: var(--node-selected-border-color);
+      }
+    }
+  }
+
+  .node-status {
+    &.selected-node {
+      .semi-tag-default {
+        border: 1px solid var(--node-selected-border-color);
+      }
+    }
+  }
+
+  .node-attachment,
+  .node-countdown,
+  .node-iframe,
+  .node-katex,
+  .node-mind,
+  .node-flow,
+  .node-codeBlock,
+  .node-documentChildren,
+  .node-documentReference,
+  .node-status,
+  .node-excalidraw {
+    &.selected-node {
+      &:not(.has-focus) {
+        ::selection {
+          background-color: transparent;
+        }
+      }
+
+      .render-wrapper {
+        position: relative;
+        border: 1px solid var(--node-selected-border-color) !important;
+
+        &:hover,
+        &:active {
+          border-color: var(--node-selected-border-color);
+          box-shadow: none;
+        }
+
+        &::after {
+          position: absolute;
+          pointer-events: none;
+          background-color: rgb(179 212 255 / 30%);
+          content: '';
+          inset: 0;
+        }
+      }
+    }
+  }
+
+  .node-image {
+    &.selected-node {
+      &:not(.has-focus) {
+        ::selection {
+          background-color: transparent;
+        }
+      }
+
+      .render-wrapper {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          pointer-events: none;
+          border: 1px solid var(--node-selected-border-color) !important;
+          border-radius: var(--border-radius);
+          content: '';
+          inset: 0;
+        }
+      }
+    }
+  }
+
+  .node-table {
+    &.selected-node {
+      &:not(.has-focus) {
+        ::selection {
+          background-color: transparent;
+        }
+      }
+
+      .render-wrapper {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          pointer-events: none;
+          border: 1px solid var(--node-selected-border-color) !important;
+          background-color: rgb(179 212 255 / 30%);
+          content: '';
+          inset: 0;
+        }
+      }
+    }
+  }
+
+  .node-columns {
+    &.selected-node {
+      .column {
+        position: relative;
+        border: 1px solid var(--node-selected-border-color) !important;
+
+        &:hover,
+        &:active {
+          border-color: var(--node-selected-border-color);
+          box-shadow: none;
+        }
+
+        &::after {
+          position: absolute;
+          pointer-events: none;
+          background-color: rgb(179 212 255 / 30%);
+          content: '';
+          inset: 0;
+        }
+      }
+    }
+  }
+}
