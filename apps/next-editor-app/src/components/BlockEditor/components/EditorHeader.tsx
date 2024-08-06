@@ -33,6 +33,35 @@ export const EditorHeader = ({
 }: EditorHeaderProps) => {
   const t = useTranslations()
 
+  const handleCopyAction = async () => {
+    const shareUrl = `${window.location.origin}/zh/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_KEY)}&token=${getStorage(AUTH_TOKEN_KEY)}`
+    copy(`${shareUrl}`, () => {
+      toast({
+        description: <div>{t('global.copySuccess')}</div>,
+      })
+    })
+    // try {
+    //   const params = new URLSearchParams({ url: shareUrl });
+    //   const { code, data } = await (await fetch(`/short-url?${params}`, { method: 'GET' })).json()
+
+    //   if (code === 200 && data) {
+    //     copy(`${process.env.NEXT_PUBLIC_SHORT_URL}/${data}`, () => {
+    //       toast({
+    //         description: <div>{t('global.copySuccess')}</div>,
+    //       })
+    //     })
+    //   } else {
+    //     toast({
+    //       description: <div>{t('global.copyFail')}</div>,
+    //     })
+    //   }
+    // } catch (err) {
+    //   toast({
+    //     description: <div>{t('global.copyFail')}</div>,
+    //   })
+    // }
+  }
+
   return (
     <div className="flex flex-row items-center justify-between flex-none py-2 pl-6 pr-3 text-black bg-white border-b border-neutral-200 dark:bg-black dark:text-white dark:border-neutral-800">
       <div className="flex flex-row gap-x-1.5 items-center">
@@ -50,13 +79,7 @@ export const EditorHeader = ({
           <div className="flex items-center gap-x-1.5">
             <Toolbar.Button
               tooltip={t('globalEditor.shareLink')}
-              onClick={() =>
-                copy(`${window.location.origin}/zh/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_KEY)}&token=${getStorage(AUTH_TOKEN_KEY)}`, () => {
-                  toast({
-                    description: <div>{t('global.copySuccess')}</div>,
-                  })
-                })
-              }
+              onClick={() => handleCopyAction()}
               className={'bg-transparent'}
             >
               <Icon name={'Link'} />

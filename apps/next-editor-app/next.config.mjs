@@ -8,6 +8,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 const rewrites = () => {
   return [
     {
+      source: "/short-url/:slug*",
+      destination: 'http://url.xulai.live/:slug*',
+    },
+    {
       source: '/ai/:slug*',
       destination: 'https://api-demo.tiptap.dev/v1/ai/:slug*',
     },
@@ -32,6 +36,7 @@ const nextConfig = {
     NEXT_PUBLIC_TIPTAP_AI_APP_ID: '79drg0x6',
     NEXT_PUBLIC_TIPTAP_AI_TOKEN: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE3MTk5MDQxNjl9.lYbRIEGpK2k5J8cRY-MEnx65gMn4uNx8YjUfBmGyn08',
     NEXT_PUBLIC_TIPTAP_AI_BASE_URL: '/ai',
+    NEXT_PUBLIC_SHORT_URL: 'http://url.xulai.live',
     // ENABLE_ALIYUN_OSS: !!config.oss.aliyun.accessKeyId,
     // DNS_PREFETCH: (config.client.dnsPrefetch || '').split(' '),
     // SEO_APPNAME: config.client.seoAppName,
@@ -78,6 +83,19 @@ const nextConfig = {
       ],
     })
     return config
+  },
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'Access-Control-Allow-Credentials', value: 'true' },
+          { key: 'Access-Control-Allow-Origin', value: '*' }, // 或者指定具体的域名
+          { key: 'Access-Control-Allow-Methods', value: 'GET,OPTIONS,PATCH,DELETE,POST,PUT' },
+          { key: 'Access-Control-Allow-Headers', value: 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version' },
+        ],
+      },
+    ];
   },
   async redirects() {
     return [
