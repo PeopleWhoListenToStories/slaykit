@@ -1,0 +1,98 @@
+{
+  "LoginPage": {
+    "title": "登录",
+    "desc": "登录页面",
+    "headerTitle": "登录帐户",
+    "headerTip": "在下面输入您的电子邮件登录您的帐户",
+    "account": "账户",
+    "password": "密码",
+    "placeholderAccount": "请输入账户",
+    "placeholderPassword": "请输入密码",
+    "invalidAccount": "账号必须至少包含2个字符",
+    "invalidPassword": "密码必须至少包含2个字符",
+    "loginBtn": "登录",
+    "loginSuccessMessage": "登录成功",
+    "loginFailMessage": "登录失败"
+  },
+  "LocaleSwitcher": {
+    "zh": "🇨🇳 简体中文",
+    "en": "🇺🇸 English",
+    "label": "切换语言"
+  },
+  "index": {
+    "title": "SlayKit",
+    "desc": "基于tiptap和prosemirror的工具包编辑器套件.",
+    "try": "立即体验"
+  },
+  "global": {
+    "loading": "加载中",
+    "connect": "连接",
+    "connecting": "正在连接",
+    "connectingDisconnectOnlyEdit": "我们已与您断开连接，您可以继续编辑文档。一旦重新连接，我们会自动重新提交数据.",
+    "connectingDisconnectOnlyRead": "我们已与您断开连接，您可以继续阅读文档。一旦重新连接，我们会自动重新刷新数据.",
+    "copySuccess": "复制成功",
+    "copyFail": "复制失败",
+    "technological exchanges": "技术交流",
+    "dashboard": "数据大盘",
+    "customChart": "自定义报表",
+    "rpa": "可视化流程编排",
+    "drawio": "流程图编辑器",
+    "monitor": "数据监控",
+    "userManage": "用户管理",
+    "formEngine": "表单引擎",
+    "board": "办公白板",
+    "orderList": "订单列表",
+    "resource": "资产管理",
+    "dragMode": "拖拽搭建",
+    "agents": "AI智能问答",
+    "excel": "电子表格",
+    "chart": "图表制作"
+  },
+  "globalEditor": {
+    "words": "行",
+    "characters": "字符",
+    "saved": "已保存",
+    "shareLink": "分享链接",
+    "openSidebar": "打开侧边栏",
+    "closeSidebar": "收起侧边栏",
+    "tableOfContent": "目录",
+    "tableOfTitle": "开始在文档中添加标题"
+  },
+  "aiWriter": {
+    "preview": "预览",
+    "prompt": "提示",
+    "placeholder": "告诉我你想让我写什么.",
+    "reset": "重置",
+    "discard": "丢弃",
+    "insert": "插入",
+    "regenerate": "重新生成",
+    "generateText": "生成文本",
+    "loaderLabel": "AI 正在生成中.",
+    "toastTitle": "提示",
+    "toastText": "请输入描述."
+  },
+  "aiImage": {
+    "preview": "预览",
+    "prompt": "提示",
+    "placeholder": "请描述您希望我生成的图像.",
+    "reset": "重置",
+    "discard": "丢弃",
+    "insert": "插入",
+    "regenerate": "重新生成",
+    "generateImage": "生成图像",
+    "loaderLabel": "AI 正在生成中.",
+    "toastTitle": "提示",
+    "toastText": "请输入描述.",
+    "imageStyle": "图像风格"
+  },
+  "upload": {
+    "dragDropTip": "拖放到这里",
+    "dragImageTip": "拖放图片到这里",
+    "uploadBtn": "上传图像"
+  },
+  "404": {
+    "name": "SlayKit-docs",
+    "tip": "SlayKit-docs: 您访问的页面不存在",
+    "goBack": "返回首页"
+  }
+}

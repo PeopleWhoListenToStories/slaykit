@@ -1,0 +1,20 @@
+version: "3"
+services:
+  slaykit:
+    build:
+      context: .
+    image: slaykit
+    container_name: slaykit
+    volumes:
+      - ./runtime/static:/app/packages/server/static
+    environment:
+      - TZ=Asia/Shanghai
+    expose:
+      - "5001-5001"
+    ports:
+      - "5001-5001:5001-5001"
+    networks:
+      - slaykit
+networks:
+  slaykit:
+    driver: bridge

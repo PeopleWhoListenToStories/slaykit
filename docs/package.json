@@ -1,0 +1,32 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.2.3"
+  },
+  "dependencies": {
+    "@slaykit/blocktile": "workspace:^",
+    "@slaykit/bubble-menu": "workspace:^",
+    "@slaykit/core": "workspace:^",
+    "@slaykit/document": "workspace:^",
+    "@slaykit/dropcursor": "workspace:^",
+    "@slaykit/gapcursor": "workspace:^",
+    "@slaykit/heading": "workspace:^",
+    "@slaykit/horizontal-rule": "workspace:^",
+    "@slaykit/link": "workspace:^",
+    "@slaykit/link-card": "workspace:^",
+    "@slaykit/react": "workspace:^",
+    "@slaykit/text-kit": "workspace:^",
+    "@slaykit/uuid": "workspace:^"
+  }
+}

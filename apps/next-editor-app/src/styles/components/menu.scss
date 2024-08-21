@@ -1,0 +1,10 @@
+.bubble-menu {
+  display: flex;
+  padding: 4px;
+  overflow-x: auto;
+  background-color: var(--color-nav-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 3px;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+}
