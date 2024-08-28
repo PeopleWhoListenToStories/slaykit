@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useLayoutEffect, useMemo, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 import { HocuspocusProvider } from '@hocuspocus/provider'
@@ -27,6 +27,7 @@ export const WikiEditorContent = ({ documentId }: IProps) => {
   const t = useTranslations()
 
   const { online } = useNetwork()
+  const providerRef = useRef()
   const [provider, setProvider] = useState<HocuspocusProvider | null>(null)
   const [collabToken, setCollabToken] = useState<string | null>(null)
   const [aiToken, setAiToken] = useState<string | null>(null)
@@ -39,47 +40,50 @@ export const WikiEditorContent = ({ documentId }: IProps) => {
   useEffect(() => {
     setCollabToken(getStorage(AUTH_TOKEN_KEY))
     setAiToken('aiToken')
+    return () => {
+      // 离开当前页面 销毁连接
+      providerRef.current && providerRef.current.disconnect()
+    }
   }, [])
 
   const ydoc = useMemo(() => new YDoc(), [])
 
   useLayoutEffect(() => {
     if (hasCollab && collabToken) {
-      setProvider(
-        new HocuspocusProvider({
-          url: process.env.COLLABORATION_API_URL as string,
-          name: documentId,
-          document: ydoc,
-          token: collabToken,
-          parameters: {
-            targetId: documentId,
-            userId: getStorage(AUTH_USER_KEY),
-            docType: 'document',
-            editable: true,
-          },
-          onAwarenessUpdate: ({ states }) => {
-            // const users = states.map(state => ({ clientId: state.clientId, user: state.user }))
-            // if (deepEqual(user, lastAwarenessRef.current)) {
-            //   return
-            // }
-            // onAwarenessUpdate && onAwarenessUpdate(users)
-            // lastAwarenessRef.current = users
-          },
-          onAuthenticationFailed(e) {
-            toggleLoading(false)
-            toast({
-              title: `提示`,
-              description: <div>鉴权失败！暂时无法提供服务 {JSON.stringify(e)}</div>,
-            })
-          },
-          onSynced() {
-            toggleLoading(false)
-          },
-          onStatus({ status }) {
-            setStatus(status)
-          },
-        }),
-      )
+      const _provider = new HocuspocusProvider({
+        url: process.env.COLLABORATION_API_URL as string,
+        name: documentId,
+        document: ydoc,
+        token: collabToken,
+        parameters: {
+          targetId: documentId,
+          userId: getStorage(AUTH_USER_KEY),
+          docType: 'document',
+          editable: true,
+        },
+        onAwarenessUpdate: ({ states }) => {
+          // const users = states.map(state => ({ clientId: state.clientId, user: state.user }))
+          // if (deepEqual(user, lastAwarenessRef.current)) {
+          //   return
+          // }
+          // onAwarenessUpdate && onAwarenessUpdate(users)
+          // lastAwarenessRef.current = users
+        },
+        onAuthenticationFailed(e) {
+          toggleLoading(false)
+          toast({
+            title: `提示`,
+            description: <div>鉴权失败！暂时无法提供服务 {JSON.stringify(e)}</div>,
+          })
+        },
+        onSynced() {
+          toggleLoading(false)
+        },
+        onStatus({ status }) {
+          setStatus(status)
+        },
+      })
+      setProvider(_provider)
     }
   }, [setProvider, collabToken, ydoc, documentId, hasCollab])
 

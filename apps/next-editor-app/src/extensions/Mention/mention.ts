@@ -6,11 +6,26 @@ import tippy from 'tippy.js'
 import { MentionList } from './wrapper/index'
 
 import { getDatasetAttribute } from '~/extensions/prose-utils'
+import { AUTH_TOKEN_KEY, getStorage } from '~/helpers/storage'
 
 const suggestion = {
   items: async ({ query }) => {
-    const data = ['zhangsan', 'lisi']
-    return data.filter(item => item.toLowerCase().startsWith(query.toLowerCase()))
+    const { code, data = {} } = await (
+      await fetch(`/api/wiki/member/${'Ti3h_R-Pk2aX'}?page=1&pageSize=9999`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getStorage(AUTH_TOKEN_KEY)}`,
+        },
+      })
+    ).json()
+    if (code === 200) {
+      const list = data.data || []
+      const userList = list.map(v => v.user.name)
+      return userList.filter(item => item.toLowerCase().startsWith(query.toLowerCase()))
+    } else {
+      return []
+    }
   },
 
   render: () => {
