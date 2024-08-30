@@ -12,6 +12,10 @@ const rewrites = () => {
       destination: 'http://url.xulai.live/short-url/:slug*',
     },
     {
+      source: "/en/short-url/:slug*",
+      destination: 'http://url.xulai.live/short-url/:slug*',
+    },
+    {
       source: '/ai/:slug*',
       destination: 'https://api-demo.tiptap.dev/v1/ai/:slug*',
     },

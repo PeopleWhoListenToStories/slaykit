@@ -34,35 +34,35 @@ export const EditorHeader = ({
   const t = useTranslations()
 
   const handleCopyAction = async () => {
-    const shareUrl = `${window.location.origin}/zh/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_KEY)}&token=${getStorage(AUTH_TOKEN_KEY)}`
-    if (Math.random() > 0.5) {
-      copy(`${shareUrl}`, () => {
-        toast({
-          description: <div>{t('global.copySuccess')}</div>,
-        })
-      })
-    } else {
-      try {
-        const params = new URLSearchParams({ url: shareUrl });
-        const { code, data } = await (await fetch(`/short-url?${params}`, { method: 'GET' })).json()
+    const shareUrl = `${window.location.origin}/${window.location.pathname.split('/')[0]}/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_KEY)}&token=${getStorage(AUTH_TOKEN_KEY)}&date=${new Date().toLocaleDateString()}`
+    // if (Math.random() > 0.5) {
+    //   copy(`${shareUrl}`, () => {
+    //     toast({
+    //       description: <div>{t('global.copySuccess')}</div>,
+    //     })
+    //   })
+    // } else {
+    try {
+      const params = new URLSearchParams({ url: shareUrl });
+      const { code, data } = await (await fetch(`/short-url?${params}`, { method: 'GET' })).json()
 
-        if (code === 200 && data) {
-          copy(`${process.env.NEXT_PUBLIC_SHORT_URL}/${data}`, () => {
-            toast({
-              description: <div>{t('global.copySuccess')}</div>,
-            })
-          })
-        } else {
+      if (code === 200 && data) {
+        copy(`${process.env.NEXT_PUBLIC_SHORT_URL}/${data}`, () => {
           toast({
-            description: <div>{t('global.copyFail')}</div>,
+            description: <div>{t('global.copySuccess')}</div>,
           })
-        }
-      } catch (err) {
+        })
+      } else {
         toast({
           description: <div>{t('global.copyFail')}</div>,
         })
       }
+    } catch (err) {
+      toast({
+        description: <div>{t('global.copyFail')}</div>,
+      })
     }
+    // }
   }
 
   return (
