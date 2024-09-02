@@ -1,5 +1,6 @@
-export const AUTH_TOKEN_KEY = 'token'
-export const AUTH_USER_KEY = 'user'
+export const AUTH_TOKEN_KEY = 'auth'
+export const AUTH_USER_KEY = 'user.key'
+export const AUTH_USER_INFO_KEY = 'user.info'
 
 export function getStorage(key: string, defaultValue = null) {
   if (typeof window === 'undefined') throw new Error()

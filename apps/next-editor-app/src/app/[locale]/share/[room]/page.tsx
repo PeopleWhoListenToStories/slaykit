@@ -13,7 +13,7 @@ import { BlockEditor } from '~/components/BlockEditor'
 import { DarkModeSwitcher } from '~/components/DarkModeSwitcher'
 import { Banner } from '~/components/ui/Banner'
 import { Loader } from '~/components/ui/Loader'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage } from '~/helpers/storage'
+// import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage } from '~/helpers/storage'
 import { useNetwork } from '~/hooks/useNetwork'
 import { useToggle } from '~/hooks/useToggle'
 
@@ -86,7 +86,6 @@ export default function Document({ params }: { params: { room: string } }) {
 
   useLayoutEffect(() => {
     if (hasCollab && collabToken) {
-      console.log(`%c 🐂 🚀 : Document -> searchParams.get('userId') `, `font-size:14px;background-color:#dd2e16;color:white;`, searchParams.get('userId'));
       setProvider(
         new HocuspocusProvider({
           url: process.env.COLLABORATION_API_URL as string,

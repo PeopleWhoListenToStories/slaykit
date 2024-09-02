@@ -15,6 +15,8 @@ export interface SlaykitProps {
 export type EditorUser = {
   clientId: string
   name: string
+  nickName: string
+  avatar: string
   color: string
   initials?: string
 }

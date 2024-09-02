@@ -13,7 +13,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Icon } from '~/components/ui/Icon'
 import { Input } from '~/components/ui/Input'
 import { toast } from '~/components/ui/Toast/use-toast'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage, setStorage } from '~/helpers/storage'
+import { AUTH_TOKEN_KEY, AUTH_USER_KEY, AUTH_USER_INFO_KEY, getStorage, setStorage } from '~/helpers/storage'
 import { cn } from '~/helpers/utils'
 
 interface LoginParams {
@@ -21,7 +21,7 @@ interface LoginParams {
   password: string
 }
 
-interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
+interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> { }
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const t = useTranslations('LoginPage')
@@ -66,9 +66,10 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     const { code, message, data: resData } = data
     setIsLoading(false)
     if (code === 200) {
-      const { token, id } = resData
+      const { token, id, name, nickname: nickName, avatar } = resData
       setStorage(AUTH_TOKEN_KEY, token)
-      setStorage(AUTH_USER_KEY, id)
+      // setStorage(AUTH_USER_KEY, id)
+      setStorage(AUTH_USER_INFO_KEY, JSON.stringify({ id, name, nickName, avatar }))
       toast({
         title: `Hello ${name} !`,
         description: (

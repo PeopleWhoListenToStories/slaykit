@@ -8,7 +8,7 @@ import { Icon } from '~/components/ui/Icon'
 import { toast } from '~/components/ui/Toast/use-toast'
 import { Toolbar } from '~/components/ui/Toolbar'
 import { copy } from '~/helpers/copy'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage } from '~/helpers/storage'
+import { AUTH_TOKEN_KEY, AUTH_USER_INFO_KEY, getStorage } from '~/helpers/storage'
 
 export type EditorHeaderProps = {
   editable?: boolean
@@ -34,7 +34,7 @@ export const EditorHeader = ({
   const t = useTranslations()
 
   const handleCopyAction = async () => {
-    const shareUrl = `${window.location.origin}/${window.location.pathname.split('/')[0]}/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_KEY)}&token=${getStorage(AUTH_TOKEN_KEY)}&date=${new Date().toLocaleDateString()}`
+    const shareUrl = `${window.location.origin}/${window.location.pathname.split('/')[0]}/share/${shareDocumentId}?userId=${getStorage(AUTH_USER_INFO_KEY).id}&token=${getStorage(AUTH_TOKEN_KEY)}&time=${Date.now()}`
     // if (Math.random() > 0.5) {
     //   copy(`${shareUrl}`, () => {
     //     toast({

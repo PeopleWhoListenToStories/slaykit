@@ -39,11 +39,6 @@ const WorkOrganization = ({ params }: IProps) => {
       const wikiList = wikiListData || []
       setWikiId(wikiList[0].id)
       setWikiList(wikiList)
-      console.log(
-        `%c 🚥 🚀 : WorkOrganization ->  `,
-        `font-size:14px;background-color:#07204f;color:white;`,
-        `/work/${organizationId}/${wikiId}`,
-      )
       router.push(`/work/${organizationId}/${wikiList[0].id}`)
     } else {
       toast({

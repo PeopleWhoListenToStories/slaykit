@@ -16,7 +16,7 @@ import { Icon } from '~/components/ui/Icon'
 import { Loader } from '~/components/ui/Loader'
 import { Surface } from '~/components/ui/Surface'
 import { Toolbar } from '~/components/ui/Toolbar'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage } from '~/helpers/storage'
+import { AUTH_TOKEN_KEY, AUTH_USER_INFO_KEY, getStorage } from '~/helpers/storage'
 import { useDarkMode } from '~/hooks/useDarkMode'
 import { useNetwork } from '~/hooks/useNetwork'
 import { useToggle } from '~/hooks/useToggle'
@@ -136,7 +136,7 @@ export default function Document({ params }: { params: { room: string } }) {
           token: collabToken,
           parameters: {
             targetId: room,
-            userId: getStorage(AUTH_USER_KEY),
+            userId: getStorage(AUTH_USER_INFO_KEY).id,
             docType: 'document',
             editable: true,
           },

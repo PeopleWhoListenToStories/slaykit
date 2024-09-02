@@ -20,6 +20,12 @@ export type EditorInfoProps = {
 export const EditorInfo = memo(({ characters, collabState, users, words }: EditorInfoProps) => {
   const t = useTranslations('globalEditor')
 
+  const generateAvatarUrl = (user: EditorUser) => {
+    return user.avatar
+      ? user.avatar
+      : `https://api.dicebear.com/7.x/notionists-neutral/svg?seed=${user.name}&backgroundColor=${user.color.replace('#', '')}`
+  }
+
   return (
     <div className="flex items-center">
       <div className="flex flex-col justify-center pr-4 mr-4 text-right border-r border-neutral-200 dark:border-neutral-800">
@@ -50,9 +56,7 @@ export const EditorInfo = memo(({ characters, collabState, users, words }: Edito
                 <Tooltip title={user.name}>
                   <img
                     className="w-8 h-8 border border-white rounded-full dark:border-black"
-                    src={`https://api.dicebear.com/7.x/notionists-neutral/svg?seed=${
-                      user.name
-                    }&backgroundColor=${user.color.replace('#', '')}`}
+                    src={generateAvatarUrl(user)}
                     alt="avatar"
                   />
                 </Tooltip>

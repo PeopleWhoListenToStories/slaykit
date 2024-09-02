@@ -17,6 +17,7 @@ import { CollaborationCursor } from '~/extensions/CollaborationCursor'
 import { ExtensionKit } from '~/extensions/extension-kit'
 import { userColors, userNames } from '~/helpers/constants'
 import { randomElement } from '~/helpers/utils'
+import { AUTH_USER_INFO_KEY, getStorage } from '~/helpers/storage'
 
 const TIPTAP_AI_APP_ID = process.env.NEXT_PUBLIC_TIPTAP_AI_APP_ID
 const TIPTAP_AI_TOKEN = process.env.NEXT_PUBLIC_TIPTAP_AI_TOKEN
@@ -64,8 +65,11 @@ export const useBlockEditor = ({
         CollaborationCursor.configure({
           provider,
           user: {
-            name: randomElement(userNames),
+            name: getStorage(AUTH_USER_INFO_KEY).name || randomElement(userNames),
             color: randomElement(userColors),
+            nickName: getStorage(AUTH_USER_INFO_KEY).nickName || null,
+            id: getStorage(AUTH_USER_INFO_KEY).id || null,
+            avatar: getStorage(AUTH_USER_INFO_KEY).avatar || null,
           },
         }),
         Ai.configure({

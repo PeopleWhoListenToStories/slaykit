@@ -7,7 +7,7 @@ import { SideBarLogo } from './SideBarLogo'
 import { SideBarLogout } from './SideBarLogout'
 
 import { Icon } from '~/components/ui/Icon'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, removeStorage } from '~/helpers/storage'
+import { AUTH_TOKEN_KEY, AUTH_USER_INFO_KEY, removeStorage } from '~/helpers/storage'
 import { cn } from '~/helpers/utils'
 
 const sidebarList = [
@@ -53,7 +53,7 @@ export const Sidebar = ({ selectId = '', documentList = [], onSideBarHandle }: I
 
   const onLogoutHandle = () => {
     removeStorage(AUTH_TOKEN_KEY)
-    removeStorage(AUTH_USER_KEY)
+    removeStorage(AUTH_USER_INFO_KEY)
     router.replace('/authentication')
   }
 

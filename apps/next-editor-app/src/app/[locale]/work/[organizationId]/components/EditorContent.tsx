@@ -13,7 +13,7 @@ import { DarkModeSwitcher } from '~/components/DarkModeSwitcher'
 import { Banner } from '~/components/ui/Banner'
 import { Loader } from '~/components/ui/Loader'
 import { toast } from '~/components/ui/Toast/use-toast'
-import { AUTH_TOKEN_KEY, AUTH_USER_KEY, getStorage } from '~/helpers/storage'
+import { AUTH_TOKEN_KEY, AUTH_USER_INFO_KEY, getStorage } from '~/helpers/storage'
 import { useNetwork } from '~/hooks/useNetwork'
 import { useToggle } from '~/hooks/useToggle'
 
@@ -57,7 +57,7 @@ export const WikiEditorContent = ({ documentId }: IProps) => {
         token: collabToken,
         parameters: {
           targetId: documentId,
-          userId: getStorage(AUTH_USER_KEY),
+          userId: getStorage(AUTH_USER_INFO_KEY).id,
           docType: 'document',
           editable: true,
         },
@@ -83,6 +83,7 @@ export const WikiEditorContent = ({ documentId }: IProps) => {
           setStatus(status)
         },
       })
+      providerRef.current = _provider
       setProvider(_provider)
     }
   }, [setProvider, collabToken, ydoc, documentId, hasCollab])
