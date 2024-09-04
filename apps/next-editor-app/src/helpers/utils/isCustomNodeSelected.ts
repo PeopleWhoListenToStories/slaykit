@@ -1,6 +1,11 @@
 import { Editor } from '@slaykit/react'
 
-// import { AiWriter, AiImage, Figcaption, HorizontalRule, ImageBlock, ImageUpload, Link, CodeBlock } from '~/extensions'
+import { HorizontalRule } from '@slaykit/horizontal-rule'
+import { CodeBlock } from '@slaykit/text-kit'
+
+import { Figcaption } from '~/extensions/Figcaption'
+import { Link } from '~/extensions/Link'
+// import { AiImage, AiWriter, CodeBlock, Figcaption, HorizontalRule, ImageBlock, ImageUpload, Link } from '~/extensions'
 // import { TableOfContentsNode } from '@/extensions/TableOfContentsNode'
 
 export const isTableGripSelected = (node: HTMLElement) => {
@@ -22,15 +27,19 @@ export const isTableGripSelected = (node: HTMLElement) => {
 
 export const isCustomNodeSelected = (editor: Editor, node: HTMLElement) => {
   const customNodes = [
-    // HorizontalRule.name,
+    'aiImage',
+    'aiWriter',
+    'imageBlock',
+    'imageBlockUpload',
+    'tableOfContents',
+    HorizontalRule.name,
     // ImageBlock.name,
     // ImageUpload.name,
-    // CodeBlock.name,
-    // ImageBlock.name,
-    // Link.name,
+    CodeBlock.name,
+    Link.name,
     // AiWriter.name,
     // AiImage.name,
-    // Figcaption.name,
+    Figcaption.name,
     // TableOfContentsNode.name,
   ]
 

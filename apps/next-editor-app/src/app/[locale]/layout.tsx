@@ -77,6 +77,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 
 import './styles/globals.css'
+import '~/styles/components/index.scss'
 import 'cal-sans'
 import '@fontsource/inter/100.css'
 import '@fontsource/inter/200.css'
@@ -111,11 +112,7 @@ export default function BasicLayout({ children, params: { locale } }: Readonly<P
   return (
     <html className="h-full font-sans" lang={locale} data-atm-ext-installed={true} suppressHydrationWarning={true}>
       <head>
-        <Script
-          defer
-          src="https://umami.xulai.live/script.js"
-          data-website-id="11ab0b4e-5cec-40cc-8b61-70376a5132b0"
-        />
+        <Script defer src="https://umami.xulai.live/script.js" data-website-id="11ab0b4e-5cec-40cc-8b61-70376a5132b0" />
       </head>
       <body
         className={cn(inter.className, 'flex flex-col h-full')}
