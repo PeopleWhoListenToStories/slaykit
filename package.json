@@ -1,0 +1,72 @@
+{
+  "name": "slaykit",
+  "version": "0.0.1",
+  "description": "A Tools for SlayKit",
+  "license": "MIT",
+  "private": true,
+  "author": "xulai <xulai.me@foxmail.com>",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "husky install",
+    "update": "esno scripts/update.ts",
+    "dev": "run-s update docs:dev",
+    "dev:vue": "pnpm -C playgrounds/vue dev",
+    "build": "pnpm -r --filter=./packages/* run build",
+    "clear:dist": "pnpm -r --filter=./packages/* run clear:dist",
+    "docs:dev": "pnpm -C docs dev",
+    "docs:build": "pnpm run -C docs build",
+    "change": "changeset",
+    "change:version": "changeset version",
+    "release": "bumpp package.json packages/**/package.json",
+    "release:next": "bumpp --commit --push --tag",
+    "release:only": "changeset publish",
+    "lint": "eslint --fix",
+    "lint:fix": "pnpm run lint --fix",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "test": "vitest test",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.25.2",
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "@vitest/coverage-c8": "^0.33.0",
+    "@vitest/coverage-istanbul": "2.1.8",
+    "@vitest/coverage-v8": "2.1.8",
+    "@vitest/ui": "^2.1.8",
+    "bumpp": "^9.4.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-simple-import-sort": "^12.0.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "prettier": "^2.7.1",
+    "vite": "^6.0.5",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-dts": "^3.8.1",
+    "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "**/*.{js,ts}": [
+      "pnpm format"
+    ],
+    "**/*": "prettier --write --ignore-unknown"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18.14.1"
+  },
+  "dependencies": {
+    "eslint-plugin-react": "^7.37.3"
+  }
+}

@@ -1,0 +1,67 @@
+# https://docs.github.com/en/actions/using-workflows/about-workflows
+# 整个工作流的名称
+name: 
+
+# 监听 master 分支的 push 事件(有更新时)
+on:
+  push:
+    branches:
+      - master
+
+# 所有的 jobs
+jobs:
+  # 定义一个名为 release 的 job
+  release:
+    # 指定运行所需要的虚拟机环境（必填）
+    runs-on: ubuntu-latest
+    # 定义步骤
+    steps:
+      # https://github.com/actions/checkout
+      # 拉取代码
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      # https://github.com/actions/setup-node
+      # 安装 node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: https://registry.npmjs.org/
+
+      # https://github.com/pnpm/action-setup
+      # 安装 pnpm
+      - name: Install Pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      # https://pnpm.io/zh/cli/install#--frozen-lockfile
+      # 如果缓存没有命中，安装依赖
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile --ignore-scripts
+
+      - name: Build
+        run: pnpm build
+
+      - name: Publish
+        run: pnpm publish -r --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+
+      - run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.PUBLISH_GH_TOKEN}}
+
+      # # https://github.com/changesets/action
+      # # 自动创建发布 PR 和 发布 npm
+      # - name: Create Release Pull Request or Publish to npm
+      #   uses: changesets/action@v1
+      #   # 参数配置
+      #   with:
+      #     publish: pnpm release
+      #     version: pnpm change:version
+      #     commit: 'chore: version packages'
+      #   env:
+      #     NPM_TOKEN: ${{ secrets.PUBLISH_NPM_TOKEN }}
+      #     GITHUB_TOKEN: ${{ secrets.PUBLISH_GH_TOKEN }}

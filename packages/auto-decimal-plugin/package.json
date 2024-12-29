@@ -1,0 +1,44 @@
+{
+  "name": "@slaykit/auto-decimal-plugin",
+  "description": "A Vite plugin to remove console statements from code with dynamic configuration",
+  "version": "0.0.1",
+  "keywords": [
+    "vite",
+    "vite-plugin",
+    "auto-decimal",
+    "plugin"
+  ],
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "umd": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "clear:dist": "rm -rf ./dist"
+  },
+  "devDependencies": {
+    "@babel/generator": "^7.26.3",
+    "@babel/parser": "^7.26.3",
+    "@babel/traverse": "^7.26.4",
+    "@babel/types": "^7.26.3",
+    "decimal.js-light": "^2.5.1",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "@rollup/pluginutils": "^5.1.4",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__traverse": "^7.20.6"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "vue-demo",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@slaykit/auto-decimal-plugin": "workspace:^",
+    "@slaykit/remove-console-plugin": "workspace:^",
+    "@slaykit/watermark": "workspace:^",
+    "decimal.js-light": "^2.5.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "terser": "^5.37.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@unocss/vite": "^0.65.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "typescript": "^5.7.2",
+    "unocss": "^0.65.3",
+    "vite": "^6.0.5",
+    "vue-tsc": "^2.1.10"
+  }
+}
